@@ -1,0 +1,23 @@
+{
+  "name": "axios-liri",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nataliebrickley/liri-node-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nataliebrickley/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/nataliebrickley/liri-node-app#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
