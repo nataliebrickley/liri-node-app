@@ -35,9 +35,9 @@ switch (process.argv[2]) {
         //if we want a song:
         case "spotify-this-song":
             //get the songs full name
-            var song = "";
-            for (i=3; i<process.argv.length; i++) {
-                song += process.argv[i];
+            var song = process.argv[3];
+            for (i=4; i<process.argv.length; i++) {
+                song += "%20" + process.argv[i];
             }
             var spotify = new Spotify(keys.spotify)
             spotify.search({
@@ -45,11 +45,11 @@ switch (process.argv[2]) {
                 query: song
             }).then(function(response) {
                 var data = response.tracks.items[0]
-                //console.log(response.tracks.items[0])
+                //console.log(data)
                 var artists = "Artists: " + data.artists[0].name;
                 var songName = ", Song: " + data.name;
                 var preview = ", Preview Link: " + data.preview_url;
-                var album = ", Album: " + data.name;
+                var album = ", Album: " + data.album.name;
                 console.log(artists, songName, preview, album)
             })
     
