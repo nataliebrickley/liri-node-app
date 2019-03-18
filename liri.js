@@ -11,14 +11,14 @@ switch (process.argv[2]) {
     case "concert-this":
         //get the artists full name:
         var artist = "";
-        for (i=3; i<process.argv.length; i++) {
+        for (i = 3; i < process.argv.length; i++) {
             artist += process.argv[i];
         }
         //generate our query url:
         var bandsInTownURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
         //make our api request:
-        axios.get(bandsInTownURL).then(function(response){
-            for(var i=0; i<response.data.length; i++) {
+        axios.get(bandsInTownURL).then(function (response) {
+            for (var i = 0; i < response.data.length; i++) {
                 //get the venue
                 var venue = "Venue: " + response.data[i].venue.name;
                 //get the location
@@ -32,18 +32,26 @@ switch (process.argv[2]) {
         })
         break;
 
-        //if we want a song:
-        case "spotify-this-song":
-            //get the songs full name
-            var song = process.argv[3];
-            for (i=4; i<process.argv.length; i++) {
-                song += "%20" + process.argv[i];
-            }
+    //if we want a song:
+    case "spotify-this-song":
+    //if no song was entered, default to "The Sign" by Ace of Base
+    if (process.argv.length === 3) {
+        var song = "The Sign, Ace of Base"
+        console.log(song)
+    }
+    else {
+        //else, get the songs full name
+        song = process.argv[3];
+        for (i = 4; i < process.argv.length; i++) {
+            song += "%20" + process.argv[i];
+        }
+    }
+            //get info for the song that was entered
             var spotify = new Spotify(keys.spotify)
             spotify.search({
                 type: "track",
                 query: song
-            }).then(function(response) {
+            }).then(function (response) {
                 var data = response.tracks.items[0]
                 //console.log(data)
                 var artists = "Artists: " + data.artists[0].name;
@@ -52,7 +60,7 @@ switch (process.argv[2]) {
                 var album = ", Album: " + data.album.name;
                 console.log(artists, songName, preview, album)
             })
-    
+        
 
 
 }
@@ -60,4 +68,4 @@ switch (process.argv[2]) {
 
 //ISSUES:
 //concert api: how many listings should i log?
-//spotify: artists sometimes doesnt work...get cannot read property artists of undefined
+//spotify:
