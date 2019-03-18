@@ -60,7 +60,34 @@ switch (process.argv[2]) {
                 var album = ", Album: " + data.album.name;
                 console.log(artists, songName, preview, album)
             })
-        
+        break;
+
+        //if we want a movie:
+        case "movie-this":
+        if (process.argv.length === 3) {
+            var movie = "Mr. Nobody"
+        }
+        else {
+            //else, get the full movie name
+            movie = process.argv[3];
+            for (i = 4; i < process.argv.length; i++) {
+                movie += "+" + process.argv[i];
+            }
+        }
+        //get info for the movie that was entered
+        var omdbURL = "http://www.omdbapi.com/?apikey=trilogy&t=" + movie
+        axios.get(omdbURL).then(function(response){
+            var title = "Title: " + response.data.Title;
+            var year = "Year: " + response.data.Year;
+            var IMDB = "IMDB Rating: " + response.data.Ratings[0].Value;
+            var rottenTomatoes = "Rotten Tomatoes Rating: " + response.data.Ratings[1].Value;
+            var country = "Country: " + response.data.Country;
+            var language = "Language: " + response.data.Language;
+            var plot = "Plot: " + response.data.Plot;
+            var actors = "Actors: " + response.data.Actors;
+            console.log(title, "\n", year, "\n", IMDB, "\n", rottenTomatoes, "\n", country, "\n", language, "\n", plot, "\n", actors)
+        })
+
 
 
 }
