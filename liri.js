@@ -3,8 +3,10 @@ var Spotify = require("node-spotify-api")
 var keys = require("./keys.js");
 var axios = require("axios");
 var moment = require("moment");
-//var spotify = new Spotify(keys.spotify);
+var fs = require("fs")
 
+//create a function called liri that will...
+function liri(){
 //check to see what kind of request is being made:
 switch (process.argv[2]) {
     //if we want a concert: 
@@ -87,11 +89,27 @@ switch (process.argv[2]) {
             var actors = "Actors: " + response.data.Actors;
             console.log(title, "\n", year, "\n", IMDB, "\n", rottenTomatoes, "\n", country, "\n", language, "\n", plot, "\n", actors)
         })
+        break;
 
+        case "do-what-it-says": 
+        //Using the fs Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands. It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.Edit the text in random.txt to test out the feature for movie-this and concert-this.
+        fs.readFile("random.txt", "utf8", function(error, data) {
+            if(error) {
+                console.log(error);
+            }
+            else {
+                console.log(data.split(","));
+                var array = data.split(",");
+                process.argv[2] = array[0];
+                process.argv[3] = array[1]
+                liri()
+            }
+        })
 
 
 }
-
+}
+liri();
 
 //ISSUES:
 //concert api: how many listings should i log?
