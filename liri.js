@@ -109,8 +109,8 @@ function liri() {
                     //split the info into an array of the form [command, input]
                     var array = data.split(",");
                     //set the command and input values
-                    process.argv[2] = array[0];
-                    process.argv[3] = array[1]
+                    process.argv[2] = array[0].trim();
+                    process.argv[3] = array[1].trim();
                     //...and run these values through liri
                     liri()
                 }
