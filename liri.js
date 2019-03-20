@@ -29,7 +29,7 @@ function liri() {
                     var formatDate = moment(response.data[i].datetime).format("MM/DD/YYYY")
                     var date = "Date: " + formatDate;
                     //log the results
-                    console.log(venue, "\n", location, "\n", date)
+                    console.log(venue + "\n" + location + "\n" + date)
                     console.log("==============================")
                 }
             })
@@ -65,7 +65,7 @@ function liri() {
                 //album:
                 var album = "Album: " + data.album.name;
                 //log the results:
-                console.log(artists, "\n", songName, "\n", preview, "\n", album)
+                console.log(artists + "\n" + songName + "\n" + preview + "\n" + album)
             })
             break;
 
@@ -94,7 +94,7 @@ function liri() {
                 var plot = "Plot: " + response.data.Plot;
                 var actors = "Actors: " + response.data.Actors;
                 //log the results:
-                console.log(title, "\n", year, "\n", IMDB, "\n", rottenTomatoes, "\n", country, "\n", language, "\n", plot, "\n", actors)
+                console.log(title + "\n" + year + "\n" + IMDB + "\n" + rottenTomatoes + "\n" + country + "\n" + language + "\n"+ plot + "\n" + actors)
             })
             break;
 
